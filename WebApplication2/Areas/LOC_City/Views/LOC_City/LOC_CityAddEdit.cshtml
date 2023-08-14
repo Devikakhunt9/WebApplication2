@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Add PAGE";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using System.Data;
+@model WebApplication2.Areas.LOC_City.Models.LOC_CityModel;
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+<form method="post" asp-area="LOC_City" asp-controller="LOC_City" asp-action="Save" >
+    <input type="hidden" asp-for="CityID"/>
+    <table class="table">
+        <tr>
+            <td>
+                City Name :
+            </td>
+            <td>
+                <input asp-for="CityName"  type="text"/>
+                <span asp-validation-for="CityName" class="text-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                City Code :
+            </td>
+            <td>
+                <input asp-for="CityCode" type = "text" />
+                <span asp-validation-for="CityCode" class="text-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                StateID :
+            </td>
+            <td>
+                <input asp-for="StateID" type="text"/>
+                <span asp-validation-for="StateID" class="text-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Country ID:
+            </td>
+            <td>
+            <input asp-for="CountryID" type="text" />
+                <span asp-validation-for="CountryID" class="text-danger"></span>
+            </td>
+        </tr>
+    </table>
+    <button class="btn btn-success" type="submit">submit</button>
+</form>

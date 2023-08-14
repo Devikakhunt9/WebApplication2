@@ -1,0 +1,118 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "State List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using System.Data;
+@model DataTable;
+<form>
+    <table class="table">
+        <tbody>
+            <tr>
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                Select Country
+                            </td>
+                            <td>
+                                :
+                            </td>
+                            <td>
+                                <input type="text" />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                Select State
+                            </td>
+                            <td>
+                                :
+                            </td>
+                            <td>
+                                <input type="text" />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                Select City
+                            </td>
+                            <td>
+                                :
+                            </td>
+                            <td>
+                                <input type="text" />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <button class="btn btn-success">Submit</button>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+</form>
+<a class="btn btn-success" asp-area="LOC_State" asp-controller="LOC_State" asp-action="LOC_StateAddEdit">Add State +</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">No</th>
+            <th scope="col">State Name</th>
+            <th scope="col">State Code</th>
+            <th scope="col">Country Name</th>
+            <th scope="col">Created</th>
+            <th scope="col">Modified</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(DataRow dr in Model.Rows)
+        {
+            <tr>
+                <th scope="col">
+                    @dr["StateID"]
+                </th>
+                <td>
+                    @dr["StateName"]
+                </td>
+                <td>
+                    @dr["StateCode"]
+                </td>
+                <td>
+                    @dr["CountryName"]
+                </td>
+                <td>
+                    @dr["Created"]
+                </td>
+                <td>
+                    @dr["Modified"]
+                </td>
+                <td>
+                    <form method="post" asp-area="LOC_State" asp-controller="LOC_State" asp-action="LOC_StateAddEdit">
+                        <input type="hidden" name="StateID" value="@Convert.ToInt32(dr["StateID"])" />
+                        <button type="submit" class=" btn btn-warning">Edit</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="post" asp-area="LOC_State" asp-controller="LOC_State" asp-action="Delete">
+                        <input type="hidden" name="StateID" value="@Convert.ToInt32(dr["StateID"])" />
+                        <button type="submit" class=" btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

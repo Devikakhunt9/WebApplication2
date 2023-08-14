@@ -1,0 +1,48 @@
+﻿@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+@{
+    ViewData["Title"] = "Add State";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model WebApplication2.Areas.LOC_State.Models.LOC_StateModel;
+@using System.Data;
+@*<h1>@ViewData.Data</h1>*@
+<form method="post" asp-area="LOC_State" asp-controller="LOC_State" asp-action="Save">
+    <input type="hidden" asp-for="StateID" />
+    <table class="table">
+        <tr>
+            <td>
+                State Name :
+            </td>
+            
+            <td>
+                <input  asp-for="StateName" type="text" />
+                <span class="text-danger" asp-validation-for="StateName"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                State Code :
+            </td>
+
+            <td>
+                <input asp-for="StateCode" type="text" />
+                <span class="text-danger" asp-validation-for="StateCode"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Country ID :
+            </td>
+
+            <td>
+                <input asp-for="CountryID" type="text" />
+                <span class="text-danger" asp-validation-for="CountryID"></span>
+            </td>
+        </tr>
+    </table>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

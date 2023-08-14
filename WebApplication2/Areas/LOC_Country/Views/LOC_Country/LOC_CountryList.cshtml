@@ -1,0 +1,118 @@
+﻿@{
+    ViewData["Title"] = "Country List Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using System.Data;
+@model DataTable;
+<p>@ViewBag.Data</p>
+<form>
+    <table class="table">
+        <tbody>
+            <tr>
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                Select Country
+                            </td>
+                            <td>
+                                :
+                            </td>
+                            <td>
+                                <input type="text" />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                Select State
+                            </td>
+                            <td>
+                                :
+                            </td>
+                            <td>
+                                <input type="text" />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                Select City
+                            </td>
+                            <td>
+                                :
+                            </td>
+                            <td>
+                                <input type="text" />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <button  class="btn btn-success" asp-area="LOC_Country" asp-controller="LOC_Country" asp-action="LOC_CountryListByID">Submit</button>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+</form>
+<a class="btn btn-success"  asp-area="LOC_Country" asp-controller="LOC_Country" asp-action="LOC_CountryAddEdit">
+    Add Country +
+</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">No</th>
+            <th scope="col">CountryName</th>
+            <th scope="col">CountryCode</th>
+            <th scope="col">Add Date</th>
+            <th scope="col">Modified Date</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+            @foreach (DataRow dr in Model.Rows)
+            {
+            <tr>
+                <th scope="col">
+                    @dr["CountryID"]
+                </th>
+                <td>
+                    @dr["CountryName"]
+                </td>
+                <td>
+                    @dr["CountryCode"]
+                </td>
+                <td>
+                    @dr["Created"]
+                </td>
+                <td>
+                    @dr["Modified"]
+                </td>
+                <td>
+                    <form method="post" asp-area="LOC_Country" asp-controller="LOC_Country" asp-action="LOC_CountryAddEdit">
+                        <input type="hidden" name="CountryID" value="@Convert.ToInt32(dr["CountryID"])" />
+                        <button type="submit" class=" btn btn-primary">Edit </button>
+                    </form>
+                </td>
+                <td>
+                    <form method="post" asp-area="LOC_Country" asp-controller="LOC_Country" asp-action="Delete">
+                        <input type="hidden" name="CountryID" value="@Convert.ToInt32(dr["CountryID"])" />
+                        <button type="submit" class=" btn btn-danger">Delete</button>
+                    </form>
+                </td>
+        </tr>
+            }
+    </tbody>
+   
+    
+</table>
+
