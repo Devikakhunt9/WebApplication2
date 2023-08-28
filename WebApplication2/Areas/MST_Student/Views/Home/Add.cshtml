@@ -1,0 +1,130 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Add Student";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+@model WebApplication2.Areas.MST_Student.Models.MST_StudentModel;
+@*<h1>@ViewBag.Data</h1>*@
+<form method="post" asp-area="MST_Student" asp-controller="Home" asp-action="Save">
+    <input type="hidden" asp-for="StudentID" />
+    <table class="table">
+        <tr>
+        <td>
+            Student Name :
+        </td>
+        <td>
+            <input asp-for="StudentName" type="text" />
+                <span class="text text-danger" asp-validation-for="StudentName"></span>
+        </td>
+        </tr>
+        <tr>
+        <td>
+              Email :
+        </td>
+        <td>
+                <input asp-for="Email" type="text" />
+                <span class="text text-danger" asp-validation-for="Email"></span>
+        </td>
+        </tr>
+        <tr>
+            <td>
+                MobileNo Student  :
+            </td>
+            <td>
+                <input asp-for="MobileNoStudent" type="text" />
+                <span class="text text-danger" asp-validation-for="MobileNoStudent"></span>
+            </td>
+        </tr>
+        <tr>
+        <td>
+                Branch ID :
+        </td>
+        <td>
+                <input asp-for="BranchID" type="text" />
+                <span class="text text-danger" asp-validation-for="BranchID"></span>
+        </td>
+        </tr>
+        <tr>
+            <td>
+                City ID :
+            </td>
+            <td>
+                <input asp-for="CityID" type="text" />
+                <span class="text text-danger" asp-validation-for="CityID"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                MobileNo Father  :
+            </td>
+            <td>
+                <input asp-for="MobileNoFather" type="text" />
+                <span class="text text-danger" asp-validation-for="MobileNoFather"></span>
+            </td>
+        </tr>
+         <tr>
+            <td>
+                Address  :
+            </td>
+            <td>
+                <input asp-for="Address" type="text" />
+                <span class="text text-danger" asp-validation-for="Address"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                BirthDate :
+            </td>
+            <td>
+                <input asp-for="BirthDate" type="text" />
+                <span class="text text-danger" asp-validation-for="BirthDate"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                IsActive  :
+            </td>
+            <td>
+                <input asp-for="IsActive" type="checkbox" value="checked" />
+                <span class="text text-danger" asp-validation-for="IsActive"></span>
+            </td>
+        </tr>
+         <tr>
+            <td>
+                Gender :
+            </td>
+            <td>
+                <input asp-for="Gender" type="text"/>
+                @*<input asp-for="Gender" type="radio" name="a" value="a"/>Male
+
+                <input asp-for="Gender" type="radio" name="a" value="a" />Female*@
+                <span class="text text-danger" asp-validation-for="Gender"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Password  :
+            </td>
+            <td>
+                <input asp-for="Password" type="text" />
+                <span class="text text-danger" asp-validation-for="Password"></span>
+            </td>
+        </tr>
+    </table>
+        @if (ViewBag.Data != 0)
+        {
+            <button type="submit"class="btn btn-success" >Edit</button>
+
+        }
+        else
+        {
+        <button type="submit"class="btn btn-success" >Add</button>
+        }
+</form>

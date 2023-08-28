@@ -8,6 +8,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @model WebApplication2.Areas.LOC_State.Models.LOC_StateModel;
+@using WebApplication2.Areas.LOC_Country.Models;
 @using System.Data;
 @*<h1>@ViewData.Data</h1>*@
 <form method="post" asp-area="LOC_State" asp-controller="LOC_State" asp-action="Save">
@@ -39,8 +40,14 @@
             </td>
 
             <td>
-                <input asp-for="CountryID" type="text" />
-                <span class="text-danger" asp-validation-for="CountryID"></span>
+                <select asp-for="CountryID">
+                    @foreach (LOC_CountryModel lc in ViewBag.LI)
+                    {
+                        <option value="@lc.CountryID">@lc.CountryName</option>
+                    }
+                </select>
+               @* <input asp-for="CountryID" type="text" />
+                <span class="text-danger" asp-validation-for="CountryID"></span>*@
             </td>
         </tr>
     </table>

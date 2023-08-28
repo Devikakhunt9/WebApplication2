@@ -1,0 +1,52 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using System.Data;
+@model DataTable;
+<a class="btn btn-success" asp-area="MST_Branch" asp-controller="Home" asp-action="Create">Add Branch +</a>
+<table class="table">
+    <tr>
+        <th scope="col">
+            No.
+        </th>
+        <th scope="col">
+            Branch name
+        </th>
+        <th scope="col">
+            Branch COde
+        </th>
+        <th scope="col">
+            Created
+        </th>
+        <th scope="col">
+            Modified
+        </th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+    </tr>
+    @foreach (DataRow dr in Model.Rows)
+    {
+        <tr>
+            <th scope="col">@dr["BranchID"]</th>
+            <td>@dr["BranchName"]</td>
+            <td>@dr["BranchCode"]</td>
+            <td>@dr["Created"]</td>
+            <td>@dr["Modified"]</td>      
+            <td>
+                <form method="post" asp-area="MST_Branch" asp-controller="Home" asp-action="Create" asp-route-BranchID="@Convert.ToInt32(dr["BranchID"])">
+                    <input type="hidden" name="BranchID" value="@Convert.ToInt32(dr["BranchID"])" />
+                    <button class="btn btn-primary">Edit</button>
+                </form>
+            </td>
+            <td>
+                <form method="post" asp-area="MST_Branch" asp-controller="Home" asp-action="Delete">
+                    <input type="hidden" name="BranchID" value="@Convert.ToInt32(dr["BranchID"])" />
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>

@@ -98,7 +98,7 @@
                     @dr["Modified"]
                 </td>
                 <td>
-                    <form method="post" asp-area="LOC_Country" asp-controller="LOC_Country" asp-action="LOC_CountryAddEdit">
+                    <form method="post" asp-area="LOC_Country" asp-controller="LOC_Country" asp-action="LOC_CountryAddEdit" asp-route-CountryID="@Convert.ToInt32(dr["CountryID"])">
                         <input type="hidden" name="CountryID" value="@Convert.ToInt32(dr["CountryID"])" />
                         <button type="submit" class=" btn btn-primary">Edit </button>
                     </form>

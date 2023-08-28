@@ -4,6 +4,8 @@
 }
 @using System.Data;
 @model WebApplication2.Areas.LOC_City.Models.LOC_CityModel;
+@using WebApplication2.Areas.LOC_Country.Models;
+@using WebApplication2.Areas.LOC_State.Models;
 @section Scripts{
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
@@ -32,20 +34,32 @@
         </tr>
         <tr>
             <td>
-                StateID :
+                State Name :
             </td>
             <td>
-                <input asp-for="StateID" type="text"/>
-                <span asp-validation-for="StateID" class="text-danger"></span>
+                @*<input asp-for="StateID" type="text"/>
+                <span asp-validation-for="StateID" class="text-danger"></span>*@
+                <select asp-for="StateID">
+                    @foreach (LOC_StateModel ls in ViewBag.LI)
+                    {
+                        <option value="@ls.StateID">@ls.StateName</option>
+                    }
+                </select>
             </td>
         </tr>
         <tr>
             <td>
-                Country ID:
+                Country Name:
             </td>
             <td>
-            <input asp-for="CountryID" type="text" />
-                <span asp-validation-for="CountryID" class="text-danger"></span>
+           @* <input asp-for="CountryID" type="text" />
+                <span asp-validation-for="CountryID" class="text-danger"></span>*@
+                <select asp-for="CountryID">
+                    @foreach (LOC_CountryModel lc in ViewBag.LI2)
+                    {
+                        <option value="@lc.CountryID">@lc.CountryName</option>
+                    }
+                </select>
             </td>
         </tr>
     </table>

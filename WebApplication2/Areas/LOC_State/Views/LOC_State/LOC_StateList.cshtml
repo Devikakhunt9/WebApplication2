@@ -11,7 +11,7 @@
     <table class="table">
         <tbody>
             <tr>
-                <td colspan="2">
+                @*<td colspan="2">
                     <table>
                         <tr>
                             <td>
@@ -55,9 +55,15 @@
                             </td>
                         </tr>
                     </table>
-                </td>
+                </td>*@
                 <td>
-                    <button class="btn btn-success">Submit</button>
+                    <form method="post" asp-area="LOC_State" asp-controller="LOC_State" asp-action="LOC_StateList">
+                        <div class="input-group">
+                            <input type="text" name="StateName" class="form-control" placeholder="State Name">
+                            <input type="text" name="StateCode" class="form-control" placeholder="State Code">
+                            <button type="submit" class=" btn btn-primary">Serch </button>
+                        </div>
+                    </form>
                 </td>
             </tr>
         </tbody>
@@ -103,7 +109,7 @@
                 <td>
                     <form method="post" asp-area="LOC_State" asp-controller="LOC_State" asp-action="LOC_StateAddEdit">
                         <input type="hidden" name="StateID" value="@Convert.ToInt32(dr["StateID"])" />
-                        <button type="submit" class=" btn btn-warning">Edit</button>
+                        <button type="submit" class=" btn btn-primary">Edit</button>
                     </form>
                 </td>
                 <td>

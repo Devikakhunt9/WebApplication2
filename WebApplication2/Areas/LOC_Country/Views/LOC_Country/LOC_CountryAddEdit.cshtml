@@ -8,7 +8,7 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
-<p>@ViewBag.Data</p>
+@*<p>@ViewBag.Data</p>*@
 <form method="post" asp-area="LOC_Country" asp-controller="LOC_Country"  asp-action="Save">
     <input type="hidden" asp-for="CountryID" />
     <table class="table">

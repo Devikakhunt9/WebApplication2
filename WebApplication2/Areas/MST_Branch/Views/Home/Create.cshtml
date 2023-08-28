@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Add Branch";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model WebApplication2.Areas.MST_Branch.Models.MST_BranchModel;
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+@*<h1>@ViewBag.Data</h1>*@
+<form method="post" asp-area="MST_Branch" asp-controller="Home" asp-action="Save">
+    <input type="hidden" asp-for="BranchID" />
+    <table class="table">
+        <tr>
+            <td>
+                Branch  Name :
+            </td>
+            <td>
+                <input asp-for="BranchName" type="text" />
+                <span class="text-danger" asp-validation-for="BranchName"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Brnach Code :
+            </td>
+            <td>
+                <input  asp-for="BranchCode" type="text" />
+                <span class="text-danger" asp-validation-for="BranchCode"></span>
+            </td>
+        </tr>
+    </table>
+    @if (ViewBag.Data ==0)
+    {
+        
+        <button class="btn btn-success" type="submit">Add</button>
+    }
+    else
+    {
+        
+    <button class="btn btn-success" type="submit">Submit</button>
+    }
+</form>
