@@ -5,63 +5,14 @@
 @using System.Data;
 @model DataTable;
 <p>@ViewBag.Data</p>
-<form>
-    <table class="table">
-        <tbody>
-            <tr>
-                <td colspan="2">
-                    <table>
-                        <tr>
-                            <td>
-                                Select Country
-                            </td>
-                            <td>
-                                :
-                            </td>
-                            <td>
-                                <input type="text" />
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-                <td colspan="2">
-                    <table>
-                        <tr>
-                            <td>
-                                Select State
-                            </td>
-                            <td>
-                                :
-                            </td>
-                            <td>
-                                <input type="text" />
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-                <td colspan="2">
-                    <table>
-                        <tr>
-                            <td>
-                                Select City
-                            </td>
-                            <td>
-                                :
-                            </td>
-                            <td>
-                                <input type="text" />
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-                <td>
-                    <button  class="btn btn-success" asp-area="LOC_Country" asp-controller="LOC_Country" asp-action="LOC_CountryListByID">Submit</button>
-                </td>
-            </tr>
-        </tbody>
-
-    </table>
+<form method="post" asp-area="LOC_Country" asp-controller="LOC_Country" asp-action="LOC_CountryList">
+    <div class="input-group">
+        <input type="text" name="CountryName" class="form-control" placeholder="country Name">
+        <input type="text" name="CountryCode" class="form-control" placeholder="country Code">
+        <button type="submit" class=" btn btn-primary">Serch </button>
+    </div>
 </form>
+<br/>
 <a class="btn btn-success"  asp-area="LOC_Country" asp-controller="LOC_Country" asp-action="LOC_CountryAddEdit">
     Add Country +
 </a>

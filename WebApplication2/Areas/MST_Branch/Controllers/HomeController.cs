@@ -15,13 +15,15 @@ namespace WebApplication2.Areas.MST_Branch.Controllers
             _configuration = configuration;
         }
         // GET: HomeController
-        public ActionResult Index()
+        public ActionResult Index(SearchModelBranch srb)
         {
             SqlConnection conn = new SqlConnection(this._configuration.GetConnectionString("myConnectionStr"));
             conn.Open();
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "PR_Branch_SelectAll";
+            cmd.CommandText = "PR_Branch_SerchByBranchCodeOrBranchName";
+            cmd.Parameters.AddWithValue("@BranchName", srb.BranchName);
+            cmd.Parameters.AddWithValue("@BranchCode", srb.BranchCode);
             SqlDataReader sqlDataReader = cmd.ExecuteReader();
             DataTable dt = new DataTable();
             dt.Load(sqlDataReader);

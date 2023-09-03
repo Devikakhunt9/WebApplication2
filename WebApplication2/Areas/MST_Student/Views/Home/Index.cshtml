@@ -7,6 +7,26 @@
 }
 @using System.Data;
 @model DataTable;
+
+<form>
+    <table class="table">
+        <tbody>
+            <tr>
+                <td>
+                    <form method="post" asp-area="MST_Student" asp-controller="Home" asp-action="Index">
+                        <div class="input-group">
+                            <input type="text" name="StudentName" class="form-control" placeholder="Student Name">
+                            <input type="text" name="BranchName" class="form-control" placeholder="Branch Name">
+                            <input type="text" name="CityName" class="form-control" placeholder="City Name">
+                            <button type="submit" class=" btn btn-primary">Serch </button>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+</form>
 <a class="btn btn-success" asp-area="MST_Student"  asp-controller="Home" asp-action="Add">Add Student +</a>
 <table class="table">
     <tr>

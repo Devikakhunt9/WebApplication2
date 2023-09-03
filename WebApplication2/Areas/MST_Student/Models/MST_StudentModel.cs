@@ -31,8 +31,13 @@ namespace WebApplication2.Areas.MST_Student.Models
         [Required]
         public string? Created { get;set;}
         public string? Modified { get;set;}
+    }
 
 
-
+    public class SearchModelStudent
+    {
+        public string? StudentName { get;set;}
+        public string? BranchtName { get;set;}
+        public string? CityName { get;set;}
     }
 }

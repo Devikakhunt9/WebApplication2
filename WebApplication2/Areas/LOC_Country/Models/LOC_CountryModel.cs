@@ -10,4 +10,13 @@ namespace WebApplication2.Areas.LOC_Country.Models
         [Required]
         public string? CountryCode { get; set;}
     }
+
+    public class CountrySearchModel 
+    {
+        public string?  CountryName { get; set; }
+        public string? CountryCode { get; set; }
+    }
+
 }
+
+

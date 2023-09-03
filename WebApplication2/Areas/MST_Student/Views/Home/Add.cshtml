@@ -11,6 +11,8 @@
     }
 }
 @model WebApplication2.Areas.MST_Student.Models.MST_StudentModel;
+@using WebApplication2.Areas.MST_Branch.Models;
+@using WebApplication2.Areas.LOC_City.Models;
 @*<h1>@ViewBag.Data</h1>*@
 <form method="post" asp-area="MST_Student" asp-controller="Home" asp-action="Save">
     <input type="hidden" asp-for="StudentID" />
@@ -44,19 +46,33 @@
         </tr>
         <tr>
         <td>
-                Branch ID :
+                Branch Name :
         </td>
         <td>
-                <input asp-for="BranchID" type="text" />
+                <select asp-for="BranchID">
+                    @foreach (MST_BranchModel lc in ViewBag.LI)
+                    {
+                        <option value="@lc.BranchID">@lc.BranchName</option>
+                    }
+                </select>
+                @*<input asp-for="BranchID" type="text" />*@
                 <span class="text text-danger" asp-validation-for="BranchID"></span>
         </td>
         </tr>
         <tr>
             <td>
-                City ID :
+                City Name :
             </td>
             <td>
-                <input asp-for="CityID" type="text" />
+
+                <select asp-for="CityID">
+                    @foreach (LOC_CityModel lc in ViewBag.LOC)
+                    {
+                        <option value="@lc.CityID">@lc.CityName</option>
+                    }
+                </select>
+                @*<input asp-for="CityID" type="text" />*@
+                
                 <span class="text text-danger" asp-validation-for="CityID"></span>
             </td>
         </tr>
@@ -92,7 +108,7 @@
                 IsActive  :
             </td>
             <td>
-                <input asp-for="IsActive" type="checkbox" value="checked" />
+                <input asp-for="IsActive" type="checkbox" />
                 <span class="text text-danger" asp-validation-for="IsActive"></span>
             </td>
         </tr>

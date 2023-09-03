@@ -19,7 +19,7 @@ namespace WebApplication2.Areas.LOC_Country.Controllers
         {
             return View();
         }
-        public IActionResult LOC_CountryList()
+        public IActionResult LOC_CountryList(CountrySearchModel csr)
         {
             string connectionStr = this._configuration.GetConnectionString("myConnectionStr");
             DataTable dt = new DataTable();
@@ -27,7 +27,9 @@ namespace WebApplication2.Areas.LOC_Country.Controllers
             conn.Open();
             SqlCommand objcmd = conn.CreateCommand();
             objcmd.CommandType = CommandType.StoredProcedure;
-            objcmd.CommandText = "PR_LOC_Country_SelectAll";
+            objcmd.CommandText = "PR_Country_SerchByCountryCodeOrCountryName";
+            objcmd.Parameters.AddWithValue("@CountryName", csr.CountryName);
+            objcmd.Parameters.AddWithValue("@CountryCode", csr.CountryCode);          
             SqlDataReader dataReader = objcmd.ExecuteReader();
             dt.Load(dataReader);
             return View("LOC_CountryList",dt);

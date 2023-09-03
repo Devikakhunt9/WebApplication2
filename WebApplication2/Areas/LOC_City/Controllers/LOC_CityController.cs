@@ -15,18 +15,20 @@ namespace WebApplication2.Areas.LOC_City.Controllers
         {
             _configuration = configuration;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
-        public IActionResult LOC_CityList()
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
+        public IActionResult LOC_CityList(SearchModelCity src)
         {
             
             SqlConnection sqlConnection = new SqlConnection(this._configuration.GetConnectionString("myConnectionStr"));
             sqlConnection.Open();
             SqlCommand cmd = sqlConnection.CreateCommand();
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "PR_City_SelectAll";
+            cmd.CommandText = "PR_Country_SerchByCityCodeOrCityName";
+            cmd.Parameters.AddWithValue("@CityName", src.CityName);
+            cmd.Parameters.AddWithValue("@CityCode", src.CityCode);
             SqlDataReader reader = cmd.ExecuteReader();
             DataTable dt = new DataTable(); 
             dt.Load(reader);
